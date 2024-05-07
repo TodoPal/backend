@@ -37,7 +37,8 @@ public class TodoController {
     }
 
     @PostMapping
-    public TodoDto save(@RequestBody TodoDto todoDto) {
+    public TodoDto save(@RequestBody TodoDto todoDto, @RequestParam String createdBy) {
+        todoDto.setCreatedBy(createdBy);
         return this.todoService.addTodo(todoDto);
     }
 
