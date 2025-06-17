@@ -8,3 +8,16 @@ spring:
 jwt:
   token:
     secret: a2Q0ZWdEcFlNT21oWjdFd2RKVzNFbCtHeEJXaC9lRC84bFNXZUpDeTIxVT0=
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+  data:
+    mongodb:
+      host: mongo
+      port: 27017
+      database: todo-pal

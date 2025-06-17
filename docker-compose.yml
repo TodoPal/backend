@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - backend-net
+
+  app:
+    build: .
+    container_name: backend
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+    networks:
+      - backend-net
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/mydatabase
+
+
+networks:
+  backend-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
